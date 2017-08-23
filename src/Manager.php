@@ -6,8 +6,10 @@
  * Time: 20:29
  */
 namespace Ceive\Data\Keword {
-
-	use Ceive\Util\Value\Massive;
+	
+	use Ceive\Util\Named\NamedInterface;
+	use Ceive\Util\PropContainer\PropContainerOptionTrait;
+	use Ceive\Value\Helper\HelperArray;
 
 	/**
 	 * Class Manager
@@ -15,7 +17,7 @@ namespace Ceive\Data\Keword {
 	 */
 	class Manager{
 
-		use \Ceive\Util\PropContainer\PropContainerOptionTrait;
+		use PropContainerOptionTrait;
 
 		/** @var array */
 		protected $pools = [];
@@ -40,10 +42,10 @@ namespace Ceive\Data\Keword {
 
 		/**
 		 * @param $alias
-		 * @return Pool
+		 * @return Pool|NamedInterface
 		 */
 		public function getPool($alias){
-			return Massive::getNamed($this->pools,$alias,'strcasecmp');
+			return HelperArray::getNamed($this->pools,$alias,'strcasecmp');
 		}
 
 		/**
